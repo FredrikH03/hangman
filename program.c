@@ -9,7 +9,6 @@ int main()
     printf("your chosen word is: %s\n", chosenWord);
     printf("%d\n", length);
 
-    char hiddenWord[10];
 
     char hiddenWord = hide_word(chosenWord);
 
