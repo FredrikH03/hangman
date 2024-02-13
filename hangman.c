@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void main() 
 {
@@ -7,6 +8,7 @@ void main()
     char chosenWord[50];
     scanf("%s", chosenWord);
     
+
     int length = 0;
     length = str_length(chosenWord);
 
@@ -18,25 +20,42 @@ void main()
     
     printf("returned: %s\n", hiddenWord);
 
+    bool won = false;
+    int lives = 10;
+    while(won == false && lives == 10) {
+        char userGuess[50];
+        scanf("%s", userGuess);
+
+        length = str_length( & userGuess );
+    }
+    
     return 0;
 }
     
-int str_length(char chosenWord[]) 
+
+
+int str_length(char * chosenWord[]) 
 {
     int count;
-    for(count = 0; chosenWord[count] != '\0'; count++);
+    for(count = 0; *chosenWord[count] != '\0'; count++);
     return count;
 }
 
-int hide_word(char * hiddenWord[], int length) {
-	char temp[50];
+int hide_word( char hiddenWord[], int length) {
+	for (int i = 0; i < length; i++) {
+		hiddenWord[i] = '_';
+	}
+	hiddenWord[length] = '\0';
+
+	/*char temp[50];
 
 	for (int i = 0; i < length; i++) {
 		temp[i] = '_';
 	}
 	temp[length] = '\0';
-
-	printf("value in function: %s\n", temp);
 	hiddenWord = temp;
+    printf("value in temp: %s\n", temp);
+	printf("value in hiddenWord: %s\n", hiddenWord);*/
+
 
 }
