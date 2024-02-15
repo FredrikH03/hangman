@@ -26,7 +26,14 @@ void main()
         char userGuess[50];
         scanf("%s", userGuess);
 
-        length = str_length( & userGuess );
+        int i; 
+        for (i = 0; userGuess[i] != '\0'; i++);
+
+        printf("%d\n", i);
+
+        if (i == length || i == 1){
+            printf("success\n");
+        }
     }
     
     return 0;
@@ -34,10 +41,10 @@ void main()
     
 
 
-int str_length(char * chosenWord[]) 
+int str_length(char chosenWord[]) 
 {
     int count;
-    for(count = 0; *chosenWord[count] != '\0'; count++);
+    for(count = 0; chosenWord[count] != '\0'; count++);
     return count;
 }
 
