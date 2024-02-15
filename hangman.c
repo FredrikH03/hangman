@@ -32,7 +32,17 @@ void main()
         printf("%d\n", i);
 
         if (i == length || i == 1){
-            printf("success\n");
+            printf("valid guess\n");
+            if (i == 1){
+                int temp;
+                for (temp = 0; chosenWord[temp] == userGuess; temp++);
+                if(temp > 0){
+                    printf("correct guess\n");
+                }
+                else if (temp == 0){
+                    printf("incorrect guess\n");
+                }
+            }
         }
     }
     
