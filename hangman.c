@@ -28,8 +28,7 @@ void main() {
     scanf("%s", userGuess);
 
     int i;
-    for (i = 0; userGuess[i] != '\0'; i++)
-      ;
+    for (i = 0; userGuess[i] != '\0'; i++);
 
     printf("userguess length: %d\n", i);
 
@@ -39,13 +38,9 @@ void main() {
         char tempLetter = userGuess[0];
         int temp = 0;
 
-        for (temp = 0; chosenWord[temp] == tempLetter; temp++)
-          ;
-
         printf("temp int: %d,", temp);
         printf(" and tempLetter: %s\n");
 
-        if (temp > 0) {
           printf("correct guess\n");
 
           for (int i = 0; i < length; i++) {
@@ -53,12 +48,7 @@ void main() {
               hiddenWord[i] = tempLetter;
             }
           }
-        }
 
-        else if (temp == 0) {
-          printf("incorrect guess\n");
-          lives -= 1;
-        }
       }
 
       if (i == length) {
@@ -83,7 +73,6 @@ void main() {
     printf("\nyou lost you fucking dumbass\n");
   }
 
-  return 0;
 }
 
 int str_length(char chosenWord[]) {
