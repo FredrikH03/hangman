@@ -2,99 +2,89 @@
 #include <stdio.h>
 #include <string.h>
 
-void main() {
-  printf("welcome to hangman!\nplease choose a word to guess!\n");
-
-  char chosenWord[50];
-  scanf("%s", chosenWord);
-
-  int length = 0;
-  length = str_length(chosenWord);
-
-  printf("your chosen word is: %s\n", chosenWord);
-  printf("%d\n", length);
-
-  char hiddenWord[50];
-  hide_word(&hiddenWord, length);
-
-  printf("returned: %s\n", hiddenWord);
-
-  bool won = false;
-  int lives = 10;
-  while (won == false && lives > 0) {
-    printf("hiddenWord:  %s\n", hiddenWord);
-    printf("please enter guess: \n");
-    char userGuess[50];
-    scanf("%s", userGuess);
-
-    int i;
-    for (i = 0; userGuess[i] != '\0'; i++);
-
-    printf("userguess length: %d\n", i);
-
-    if (i == length || i == 1) {
-      printf("valid guess\n");
-      if (i == 1) {
-        char tempLetter = userGuess[0];
-        int temp = 0;
-
-        printf("temp int: %d,", temp);
-        printf(" and tempLetter: %s\n");
-
-          printf("correct guess\n");
-
-          for (int i = 0; i < length; i++) {
-            if (chosenWord[i] == tempLetter) {
-              hiddenWord[i] = tempLetter;
-            }
-          }
-
-      }
-
-      if (i == length) {
-        printf("\nguessing whole word\n");
-        int test = strcmp(chosenWord, userGuess);
-        if (test == 0) {
-
-          printf("\nguess was correct\n");
-          won = true;
-        }
-      }
-    } else {
-      printf("\ninvalid guess\n");
-    }
-
-    printf("\ngame still ongoing\n");
-  }
-
-  if (won == true) {
-    printf("\nwoag... you won!\n");
-  } else {
-    printf("\nyou lost you fucking dumbass\n");
-  }
-
-}
-
-int str_length(char chosenWord[]) {
-  int count;
-  for (count = 0; chosenWord[count] != '\0'; count++)
-    ;
-  return count;
-}
-
-int hide_word(char hiddenWord[], int length) {
+char * hideWrd(int length) {
+  static char temp[50];
   for (int i = 0; i < length; i++) {
-    hiddenWord[i] = '_';
-  }
-  hiddenWord[length] = '\0';
-
-  /*char temp[50];
-
-  for (int i = 0; i < length; i++) {
-          temp[i] = '_';
+    temp[i] = '_';
   }
   temp[length] = '\0';
-  hiddenWord = temp;
-printf("value in temp: %s\n", temp);
-  printf("value in hiddenWord: %s\n", hiddenWord);*/
+
+  return temp;
 }
+
+void gamefn(char *chosenWord, char *hiddenWord){
+
+  printf("\nyour chosen word is: %s\n", chosenWord);
+
+  int lives = 10;
+  bool ongoing = true;
+  char guess[50];
+  char guessSingular;
+  bool guessBool;
+
+  while(ongoing == true && lives > 0){
+    guessBool = false;
+    printf("Status: %s\n\n", hiddenWord);
+    printf("your guess sir? ");
+    scanf("%49s", guess);
+    int guesslen = strlen(guess);
+
+    if(guesslen == 1){
+      printf("\nthis guess is of length 1 or length of word\n\n");
+      guessSingular = guess[0];
+      for(int i = 0; i < strlen(chosenWord); i++){
+        if(chosenWord[i] == guessSingular){
+          hiddenWord[i] = chosenWord[i];
+          guessBool = true;
+        }
+
+      }
+
+      if(guessBool == true){
+        printf("correct guess\n\n");
+      }
+      else{
+        printf("incorrect guess\n\n");
+        lives -= 1;
+      }
+    }
+    else if (guesslen == strlen(chosenWord)) {
+      if(strcmp(guess, chosenWord) == 0){
+        ongoing = false;
+
+      }
+      else{
+        printf("incorrect guess\n\n");
+        lives -= 2;
+      }
+    }
+    else{
+      printf("invalid guess\n\n");
+    }
+
+    if(strcmp(hiddenWord, chosenWord) == 0){
+      ongoing = false;
+    }
+  }
+  if(lives < 1){
+    printf("you lose\n\n");
+  }
+  else if (lives > 0) {
+    printf("you win!\n\n");
+  }
+
+}
+
+int main() {
+  printf("\nplease choose a word: ");
+
+  char chosenWord[50];
+  scanf("%49s", chosenWord);
+
+  char *hiddenWord = hideWrd(strlen(chosenWord));
+
+  gamefn(chosenWord, hiddenWord);
+
+  return 0;
+}
+
