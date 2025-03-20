@@ -15,6 +15,8 @@ int main() {
   int *psum;
   psum=&intsum;
 
+
+
   char arr[500];
 
   int n = sizeof(test)/sizeof(test[0]);
@@ -23,7 +25,6 @@ int main() {
     summary = 0;
     int1 = 0;
     int2 = 0;
-    int1bool = false;
     for (int j = 0; true; j++) {
       if ((test[i][j] - '0') < 10){
         int1 = test[i][j] - '0';
