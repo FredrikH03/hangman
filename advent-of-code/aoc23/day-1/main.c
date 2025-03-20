@@ -29,7 +29,6 @@ int main() {
 
   bool int1bool;
 
-  printf("string array elements are:\n"); 
   char arr[500];
 
   int n = sizeof(test)/sizeof(test[0]);
@@ -39,67 +38,27 @@ int main() {
     int1 = 0;
     int2 = 0;
     int1bool = false;
-    printf("%s\n", test[i]);
-    for (int j = 0; j < strlen(test[i]); j++) {
-      printf("%c\n", test[i][j]);
-      int digit = test[i][j] - '0';
-      printf("digit: %d\n", digit);
-
-
-      switch(test[i][j]){
-        case '1':
-          chngint(1, &int1, &int2, &int1bool);
-
-        break;
-        case '2':
-          chngint(2, &int1, &int2, &int1bool);
-
-        break;
-        case '3':
-          chngint(3, &int1, &int2, &int1bool);
-
-        break;
-        case '4':
-          chngint(4, &int1, &int2, &int1bool);
-
-        break;
-        case '5':
-          chngint(5, &int1, &int2, &int1bool);
-
-        break;
-        case '6':
-          chngint(6, &int1, &int2, &int1bool);
-
-        break;
-        case '7':
-          chngint(7, &int1, &int2, &int1bool);
-
-        break;
-        case '8':
-          chngint(8, &int1, &int2, &int1bool);
-
-        break;
-        case '9':
-          chngint(9, &int1, &int2, &int1bool);
-
-        break;
-        case '0':
-          chngint(0, &int1, &int2, &int1bool);
-
+    for (int j = 0; true; j++) {
+      if ((test[i][j] - '0') < 10){
+        int1 = test[i][j] - '0';
         break;
       }
-      printf("current status, int1: %d, int2: %d, int1bool: %b\n",int1, int2, int1bool);
+
+    }
+    int check = strlen(test[i]) - 1;
+    for (int j = check; true; j--) {
+      if ((test[i][j] - '0') < 10){
+        int2 = test[i][j] - '0';
+        break;
+      }
 
     }
 
     summary = int1 * pow(10, (int)log10(int2)+1) + int2;
-
-    printf("val: %d\n", summary);
-
     *psum += summary;
-    printf("val: %d\n", *psum);
   }
 
+  printf("val: %d\n", *psum);
 
   return 0;
 }
