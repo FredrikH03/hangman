@@ -5,7 +5,7 @@ advent-of-code
 the advent of code challenges ive done
 
 
-c-labs
+labs
 random stuff from some random dude in ASU
 
 hangman
