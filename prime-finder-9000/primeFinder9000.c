@@ -2,13 +2,13 @@
 #include <stdbool.h>
 #include <string.h>
 
-int checkThisShitOut(x){
+int checkThisShitOut(int* x){
   bool check = true;
-  for(int y = 0; y < x;){
+  for(int y = 0; y < *x;){
     y++;
     if(check == true){
-      if(y != x && y != 1){
-        if((x%y)==0){
+      if(y != *x && y != 1){
+        if((*x%y)==0){
           check = false;
         }
         else{
@@ -16,8 +16,8 @@ int checkThisShitOut(x){
       }
     }
   }
-  if(check == true && (x != 0 && x != 1)){
-    printf("X IS EQUALS: %d\n", x);
+  if(check == true && (*x != 0 && *x != 1)){
+    printf("X IS EQUALS: %d\n", *x);
   }
   return 0;
 };
@@ -26,7 +26,7 @@ int checkThisShitOut(x){
 void main(){
   int x = 0;
   for(x = 0; true; x++){
-    checkThisShitOut(x);
+    checkThisShitOut(&x);
   }
   return;
 }
