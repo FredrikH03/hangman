@@ -23,8 +23,6 @@ int main() {
 
   for (int i = 0; i < n; i++) {
     summary = 0;
-    int1 = 0;
-    int2 = 0;
     for (int j = 0; true; j++) {
       if ((test[i][j] - '0') < 10){
         int1 = test[i][j] - '0';
